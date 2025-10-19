@@ -7,8 +7,10 @@ import { fruitsData } from "@/data/fruitsData";
 import strawberryBowl from "@/assets/strawberry-bowl.jpg";
 import tropicalBowl from "@/assets/tropical-bowl.jpg";
 import appleBowl from "@/assets/apple-bowl.jpg";
+import { useLanguage } from "@/contexts/LanguageContext";
 
 const Index = () => {
+  const { t } = useLanguage();
   const [selectedFruit, setSelectedFruit] = useState<any>(null);
   const [modalOpen, setModalOpen] = useState(false);
 
@@ -35,14 +37,13 @@ const Index = () => {
         <div className="container mx-auto px-4 relative z-10">
           <div className="text-center space-y-4 mb-16 animate-fade-in">
             <h2 className="text-4xl lg:text-5xl font-bold">
-              Explore Our{" "}
+              {t("fruits.title1")}{" "}
               <span className="bg-gradient-to-r from-primary via-accent to-success bg-clip-text text-transparent">
-                Fresh Selection
+                {t("fruits.title2")}
               </span>
             </h2>
             <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
-              Click on any fruit to discover its incredible health benefits, vitamin content, 
-              and how it supports your body.
+              {t("fruits.description")}
             </p>
           </div>
 
@@ -54,7 +55,7 @@ const Index = () => {
                 className="animate-fade-in"
               >
                 <FruitCard
-                  name={fruit.name}
+                  name={t(`fruit.${fruit.fruitKey}`)}
                   emoji={fruit.emoji}
                   gradient={fruit.gradient}
                   onClick={() => handleFruitClick(fruit)}
@@ -74,37 +75,34 @@ const Index = () => {
         <div className="container mx-auto px-4 relative z-10">
           <div className="max-w-3xl mx-auto text-center space-y-6">
             <h2 className="text-4xl lg:text-5xl font-bold">
-              Why Choose{" "}
+              {t("about.title1")}{" "}
               <span className="bg-gradient-to-r from-primary to-accent bg-clip-text text-transparent">
-                SD Fruits Bowl
+                {t("about.title2")}
               </span>
             </h2>
             <p className="text-lg text-muted-foreground leading-relaxed">
-              We're passionate about bringing you the freshest, most nutritious fruits. 
-              Each piece is carefully selected to ensure maximum flavor and health benefits. 
-              With free delivery and expert guidance on nutrition, we make healthy eating 
-              easy and delicious.
+              {t("about.description")}
             </p>
             <div className="grid md:grid-cols-3 gap-6 pt-8">
               <div className="p-6 rounded-xl bg-card border-2 hover:border-primary transition-colors">
                 <div className="text-4xl mb-3">🚚</div>
-                <h3 className="font-bold text-lg mb-2">Free Delivery</h3>
+                <h3 className="font-bold text-lg mb-2">{t("about.delivery.title")}</h3>
                 <p className="text-sm text-muted-foreground">
-                  Fresh fruits delivered to your door at no extra cost
+                  {t("about.delivery.desc")}
                 </p>
               </div>
               <div className="p-6 rounded-xl bg-card border-2 hover:border-accent transition-colors">
                 <div className="text-4xl mb-3">🌟</div>
-                <h3 className="font-bold text-lg mb-2">Premium Quality</h3>
+                <h3 className="font-bold text-lg mb-2">{t("about.quality.title")}</h3>
                 <p className="text-sm text-muted-foreground">
-                  Handpicked fruits from trusted farms
+                  {t("about.quality.desc")}
                 </p>
               </div>
               <div className="p-6 rounded-xl bg-card border-2 hover:border-success transition-colors">
                 <div className="text-4xl mb-3">💚</div>
-                <h3 className="font-bold text-lg mb-2">Health First</h3>
+                <h3 className="font-bold text-lg mb-2">{t("about.health.title")}</h3>
                 <p className="text-sm text-muted-foreground">
-                  Expert nutrition information for every fruit
+                  {t("about.health.desc")}
                 </p>
               </div>
             </div>
@@ -116,7 +114,7 @@ const Index = () => {
       <footer className="py-12 bg-card border-t">
         <div className="container mx-auto px-4 text-center">
           <p className="text-muted-foreground">
-            © 2025 SD Fruits Bowl. Bringing health and happiness through nature's finest.
+            {t("footer.text")}
           </p>
         </div>
       </footer>
