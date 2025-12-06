@@ -8,7 +8,7 @@ import { toast } from "@/components/ui/use-toast";
 import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "@/components/ui/tooltip";
 
 // Anchor date for 7-day pattern
-const ANCHOR_DATE = new Date(2025, 0, 1);
+const ANCHOR_DATE = new Date(2025, 11, 6); // Dec 6, 2025 is feedback day
 const MS_PER_DAY = 24 * 60 * 60 * 1000;
 
 const isFeedbackDay = (date: Date): boolean => {

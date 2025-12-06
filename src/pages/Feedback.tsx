@@ -7,7 +7,7 @@ import { toast } from "@/hooks/use-toast";
 import { format, isSameDay, isBefore, isAfter } from "date-fns";
 
 // Anchor for 7-day cycle
-const ANCHOR_DATE = new Date(2025, 0, 1);
+const ANCHOR_DATE = new Date(2025, 11, 6); // Dec 6, 2025 is feedback day
 const MS_PER_DAY = 24 * 60 * 60 * 1000;
 
 const isFeedbackDay = (date: Date): boolean => {
