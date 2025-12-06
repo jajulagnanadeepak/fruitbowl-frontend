@@ -1,8 +1,7 @@
 import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import Lottie from "lottie-react";
-
-const LOGIN_API_URL = "http://localhost:5000/api/login";
+import api from "@/lib/api";
 
 const Input: React.FC<any> = ({ className = '', ...props }) => (
     <input
@@ -75,25 +74,22 @@ const Login = () => {
         }
 
         try {
-            const response = await fetch(LOGIN_API_URL, {
-                method: "POST",
-                headers: { "Content-Type": "application/json" },
-                body: JSON.stringify({ phoneNumber: phone, password }),
+            const response = await api.post("/api/login", {
+                phoneNumber: phone,
+                password,
             });
 
-            const data = await response.json();
-
-            if (response.ok && data.token) {
-                localStorage.setItem("auth_token", data.token);
-                localStorage.setItem("user_id", data.userId);
+            if (response.data && response.data.token) {
+                localStorage.setItem("auth_token", response.data.token);
+                localStorage.setItem("user_id", response.data.userId);
                 navigate("/calendar");
             } else {
-                setError(data.message || "Invalid credentials.");
+                setError(response.data.message || "Invalid credentials.");
                 setPassword("");
             }
-        } catch (err) {
-            console.error("Login Fetch Error:", err);
-            setError("Unable to connect to server.");
+        } catch (err: any) {
+            console.error("Login Error:", err);
+            setError(err.response?.data?.message || "Unable to connect to server.");
         } finally {
             setLoading(false);
         }
