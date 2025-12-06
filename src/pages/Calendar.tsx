@@ -86,7 +86,8 @@ const DayCell: React.FC<DayCellProps> = ({ date, today, onSelect }) => {
                   type="button"
                   onClick={(e) => {
                     e.stopPropagation();
-                    navigate(`/feedback`);
+                    const iso = date.toISOString().slice(0, 10);
+                    navigate(`/feedback?date=${iso}`);
                   }}
                   className="md:hidden inline-flex items-center justify-center w-8 h-6 text-xs font-semibold text-primary bg-primary/10 rounded-md"
                 >
