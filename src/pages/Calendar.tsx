@@ -86,8 +86,7 @@ const DayCell: React.FC<DayCellProps> = ({ date, today, onSelect }) => {
                   type="button"
                   onClick={(e) => {
                     e.stopPropagation();
-                    const iso = date.toISOString().slice(0, 10);
-                    navigate(`/dates?date=${iso}`);
+                    navigate(`/feedback`);
                   }}
                   className="md:hidden inline-flex items-center justify-center w-8 h-6 text-xs font-semibold text-primary bg-primary/10 rounded-md"
                 >
@@ -185,22 +184,22 @@ const Calendar: React.FC = () => {
   };
 
   return (
-    <div className="p-6 bg-background rounded-lg relative">
-      <div className="absolute left-4 top-4">
+    <div className="min-h-screen bg-gradient-to-br from-blue-50 to-indigo-100 p-4 md:p-8">
+      {/* Back Button - Responsive */}
+      <div className="mb-6 md:mb-8">
         <Button
           variant="ghost"
           size="sm"
-          className="flex items-center gap-2"
+          className="gap-2 mb-2"
           onClick={() => navigate("/home")}
         >
           <ArrowLeft className="w-4 h-4" />
-          Back
+          <span className="hidden sm:inline">Back</span>
         </Button>
+        <h1 className="text-3xl md:text-4xl font-bold text-blue-900">
+          Your Calendar & Feedback
+        </h1>
       </div>
-
-      <h2 className="text-lg font-semibold mb-4 text-center">
-        Your Calendar & Feedback
-      </h2>
 
       <div className="grid grid-cols-7 gap-2 text-center text-sm">
         <WeekdayHeader />

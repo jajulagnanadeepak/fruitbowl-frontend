@@ -19,8 +19,8 @@ const Navbar = () => {
       <div className="container mx-auto px-4">
         <div className="flex items-center justify-between h-20">
           <div className="flex items-center gap-2">
-            {location.pathname !== "/" && (
-              <Button variant="ghost" size="sm" onClick={() => navigate('/')} className="mr-2 -ml-4">
+            {location.pathname !== "/" && location.pathname !== "/landing" && (
+              <Button variant="ghost" size="sm" onClick={() => navigate('/')} className="mr-2 -ml-4 hidden sm:inline-flex">
                 <ArrowLeft className="h-5 w-5" />
               </Button>
             )}
