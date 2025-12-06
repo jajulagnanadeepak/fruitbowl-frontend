@@ -105,11 +105,15 @@ const DayCell: React.FC<DayCellProps> = ({ date, today, onSelect }) => {
 const Calendar: React.FC = () => {
   const navigate = useNavigate();
   // simple auth redirect preserved from original code
-  const loggedIn = typeof window !== 'undefined' && !!localStorage.getItem('sd_logged_in');
-  if (!loggedIn) {
-    navigate('/login');
-    return null;
+// Check login using auth_token (the actual stored token)
+const token = typeof window !== "undefined" ? localStorage.getItem("auth_token") : null;
+
+React.useEffect(() => {
+  if (!token) {
+    navigate("/login");
   }
+}, [token, navigate]);
+
 
   const [selectedDate, setSelectedDate] = useState<Date | null>(new Date());
   const today = new Date();
