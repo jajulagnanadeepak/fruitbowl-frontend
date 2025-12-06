@@ -3,10 +3,11 @@ import Navbar from "@/components/Navbar";
 import Hero from "@/components/Hero";
 import FruitCard from "@/components/FruitCard";
 import FruitDetailModal from "@/components/FruitDetailModal";
+import Footer from "@/components/Footer";
 import { fruitsData } from "@/data/fruitsData";
-import strawberryBowl from "@/assets/strawberry-bowl.jpg";
-import tropicalBowl from "@/assets/tropical-bowl.jpg";
-import appleBowl from "@/assets/apple-bowl.jpg";
+import strawberryBowl from "@/assets/strawberry-bowl.webp";
+import tropicalBowl from "@/assets/tropical-bowl.webp";
+import appleBowl from "@/assets/apple-bowl.webp";
 import { useLanguage } from "@/contexts/LanguageContext";
 
 const Index = () => {
@@ -110,14 +111,7 @@ const Index = () => {
         </div>
       </section>
 
-      {/* Footer */}
-      <footer className="py-12 bg-card border-t">
-        <div className="container mx-auto px-4 text-center">
-          <p className="text-muted-foreground">
-            {t("footer.text")}
-          </p>
-        </div>
-      </footer>
+      <Footer />
 
       <FruitDetailModal
         fruit={selectedFruit}

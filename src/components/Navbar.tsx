@@ -1,10 +1,14 @@
-import { Phone, Truck, Languages } from "lucide-react";
+import { Phone, Truck, Languages, ArrowLeft } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import sdLogo from "@/assets/sd-logo.png";
+import sdLogo from "@/assets/sd-logo.webp";
 import { useLanguage } from "@/contexts/LanguageContext";
+import { useLocation, useNavigate } from "react-router-dom";
+import { toast } from "@/hooks/use-toast";
 
 const Navbar = () => {
   const { language, setLanguage, t } = useLanguage();
+  const location = useLocation();
+  const navigate = useNavigate();
 
   const toggleLanguage = () => {
     setLanguage(language === "en" ? "te" : "en");
@@ -15,8 +19,13 @@ const Navbar = () => {
       <div className="container mx-auto px-4">
         <div className="flex items-center justify-between h-20">
           <div className="flex items-center gap-2">
+            {location.pathname !== "/" && (
+              <Button variant="ghost" size="sm" onClick={() => navigate('/')} className="mr-2 -ml-4">
+                <ArrowLeft className="h-5 w-5" />
+              </Button>
+            )}
             <img src={sdLogo} alt="SD Fruits" className="h-12 w-auto" />
-            <span className="text-2xl font-bold bg-gradient-to-r from-primary to-accent bg-clip-text text-transparent">
+            <span className="hidden md:inline-block text-2xl font-bold bg-gradient-to-r from-primary to-accent bg-clip-text text-transparent">
               SD Fruits Bowl
             </span>
           </div>
@@ -47,11 +56,37 @@ const Navbar = () => {
               <Truck className="h-5 w-5 text-success" />
               <span className="font-semibold text-success">{t("nav.freeDelivery")}</span>
             </div>
-            <Button variant="default" size="sm" className="gap-2">
+            <Button
+              variant="default"
+              size="sm"
+              className="gap-2"
+              onClick={async () => {
+                const phone = "+91 9505644392";
+                // try navigator clipboard first
+                try {
+                  if (navigator.clipboard && navigator.clipboard.writeText) {
+                    await navigator.clipboard.writeText(phone);
+                  } else {
+                    // fallback
+                    const ta = document.createElement("textarea");
+                    ta.value = phone;
+                    document.body.appendChild(ta);
+                    ta.select();
+                    document.execCommand("copy");
+                    document.body.removeChild(ta);
+                  }
+                  toast({ title: t("nav.phoneCopiedTitle"), description: t("nav.phoneCopiedDesc") });
+                } catch (err) {
+                  // show error toast
+                  toast({ title: t("nav.phoneCopyError") });
+                }
+              }}
+            >
               <Phone className="h-4 w-4" />
-              <span className="hidden sm:inline">+1 (555) 123-4567</span>
+              <span className="hidden sm:inline">+91 9505644392</span>
               <span className="sm:hidden">{t("nav.call")}</span>
             </Button>
+            <Button variant="outline" size="sm" onClick={() => navigate('/login')}>Login</Button>
           </div>
         </div>
       </div>

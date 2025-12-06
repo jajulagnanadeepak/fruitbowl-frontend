@@ -1,6 +1,6 @@
 import { Button } from "@/components/ui/button";
 import { ArrowRight, Sparkles } from "lucide-react";
-import heroImage from "@/assets/fruit-bowl-hero.jpg";
+import heroImage from "@/assets/fruit-bowl-hero.webp";
 import { useLanguage } from "@/contexts/LanguageContext";
 
 const Hero = () => {
@@ -19,7 +19,6 @@ const Hero = () => {
             </div>
             
             <h1 className="text-5xl lg:text-7xl font-bold leading-tight">
-              {t("hero.title1")}{" "}
               <span className="bg-gradient-to-r from-primary via-accent to-success bg-clip-text text-transparent">
                 {t("hero.title2")}
               </span>
@@ -29,15 +28,6 @@ const Hero = () => {
               {t("hero.description")}
             </p>
             
-            <div className="flex flex-wrap gap-4">
-              <Button size="lg" className="gap-2 shadow-lg hover:shadow-xl transition-all">
-                {t("hero.explore")}
-                <ArrowRight className="h-5 w-5" />
-              </Button>
-              <Button size="lg" variant="outline" className="gap-2">
-                {t("hero.learnMore")}
-              </Button>
-            </div>
           </div>
 
           <div className="relative animate-scale-in">

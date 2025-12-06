@@ -7,6 +7,9 @@ export const translations = {
     "nav.freeDelivery": "Free Delivery",
     "nav.call": "Call",
     "nav.language": "తెలుగు",
+  "nav.phoneCopiedTitle": "Phone number copied",
+  "nav.phoneCopiedDesc": "The phone number has been copied to your clipboard.",
+  "nav.phoneCopyError": "Could not copy phone number",
     
     // Hero
     "hero.badge": "Fresh & Healthy",
@@ -53,6 +56,9 @@ export const translations = {
     "fruit.pineapple": "Pineapple",
     "fruit.blueberry": "Blueberry",
     "fruit.kiwi": "Kiwi",
+  "fruit.guava": "Guava",
+  "fruit.pomegranate": "Pomegranate",
+  "fruit.papaya": "Papaya",
     
     // Body Parts
     "body.heart": "Heart",
@@ -72,6 +78,9 @@ export const translations = {
     "nav.freeDelivery": "ఉచిత డెలివరీ",
     "nav.call": "కాల్",
     "nav.language": "English",
+  "nav.phoneCopiedTitle": "ఫోన్ నంబరు కాపీ చేయబడింది",
+  "nav.phoneCopiedDesc": "ఫోన్ నంబర్ మీ క్లిప్‌బోర్డ్కు కాపీ చేయబడింది.",
+  "nav.phoneCopyError": "ఫోన్ నంబర్ కాపీ చేయలేకపోయాం",
     
     // Hero
     "hero.badge": "తాజా & ఆరోగ్యకరమైన",
@@ -116,8 +125,9 @@ export const translations = {
     "fruit.grape": "ద్రాక్ష",
     "fruit.mango": "మామిడి",
     "fruit.pineapple": "అనాసపండు",
-    "fruit.blueberry": "బ్లూబెర్రీ",
-    "fruit.kiwi": "కివి",
+  "fruit.guava": "గ్వావా",
+  "fruit.pomegranate": "దానిమ్మ",
+  "fruit.papaya": "పపయ్యా",
     
     // Body Parts
     "body.heart": "గుండె",
@@ -224,6 +234,33 @@ export const fruitTranslations = {
       ],
       vitamins: ["Vitamin C", "Vitamin K", "Vitamin E", "Potassium"],
     },
+    guava: {
+      benefits: [
+        "Rich in Vitamin C for immune support",
+        "Improves digestion with dietary fiber",
+        "Supports heart health",
+        "Helps regulate blood sugar levels",
+      ],
+      vitamins: ["Vitamin C", "Fiber", "Potassium", "Vitamin A"],
+    },
+    pomegranate: {
+      benefits: [
+        "Packed with antioxidants for cell protection",
+        "Supports heart and blood vessel health",
+        "May improve memory",
+        "Anti-inflammatory properties",
+      ],
+      vitamins: ["Vitamin C", "Vitamin K", "Folate", "Potassium"],
+    },
+    papaya: {
+      benefits: [
+        "Aids digestion with papain enzyme",
+        "Supports eye health",
+        "Boosts immune system",
+        "Promotes healthy skin",
+      ],
+      vitamins: ["Vitamin C", "Vitamin A", "Folate", "Fiber"],
+    },
   },
   te: {
     apple: {
@@ -315,6 +352,33 @@ export const fruitTranslations = {
         "మెరుగైన నిద్ర నాణ్యతను ప్రోత్సహిస్తుంది",
       ],
       vitamins: ["విటమిన్ సి", "విటమిన్ కె", "విటమిన్ ఇ", "పొటాషియం"],
+    },
+    guava: {
+      benefits: [
+        "రోగనిరోధక శక్తికి విటమిన్ సి లో సమృద్ధి",
+        "ఆహార ఫైబర్ ద్వారా జీర్ణక్రియను మెరుగుపరుస్తుంది",
+        "గుండె ఆరోగ్యానికి మద్దతు",
+        "రక్త చక్కర స్థాయిలను నిర్వహించడానికి సహాయపడుతుంది",
+      ],
+      vitamins: ["విటమిన్ సి", "ఫైబర్", "పొటాషియం", "విటమిన్ ఎ"],
+    },
+    pomegranate: {
+      benefits: [
+        "కణరక్షణకు యాంటీఆక్సిడెంట్లతో సమృద్ధి",
+        "గుండె మరియు రక్త వాస్క్యూలర్ ఆరోగ్యాన్ని మద్దతు",
+        "జ్ఞాపకశక్తిని మెరుగుపరచవచ్చు",
+        "ప్రతిజ్వల లక్షణాలు",
+      ],
+      vitamins: ["విటమిన్ సి", "విటమిన్ కె", "ఫోలేట్", "పొటాషియం"],
+    },
+    papaya: {
+      benefits: [
+        "పపైన్ ఎంజైమ్‌తో జీర్ణక్రియకు సహాయపడుతుంది",
+        "కంటి ఆరోగ్యానికి మద్దతు",
+        "రోగనిరోధక శక్తిని పెంచుతుంది",
+        "ఆరోగ్యకరమైన చర్మాన్ని ప్రోత్సహిస్తుంది",
+      ],
+      vitamins: ["విటమిన్ సి", "విటమిన్ ఎ", "ఫోలేట్", "ఫైబర్"],
     },
   },
 };
