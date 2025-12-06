@@ -86,7 +86,7 @@ const DayCell: React.FC<DayCellProps> = ({ date, today, onSelect }) => {
                   type="button"
                   onClick={(e) => {
                     e.stopPropagation();
-                    const iso = date.toISOString().slice(0, 10);
+                    const iso = format(date, "yyyy-MM-dd");
                     navigate(`/feedback?date=${iso}`);
                   }}
                   className="md:hidden inline-flex items-center justify-center w-8 h-6 text-xs font-semibold text-primary bg-primary/10 rounded-md"
@@ -150,7 +150,7 @@ const Calendar: React.FC = () => {
 
     // Only allow feedback days
     if (isFeedbackDay(date)) {
-      const iso = date.toISOString().slice(0, 10);
+      const iso = format(date, "yyyy-MM-dd");
 
       const today = new Date();
       today.setHours(0, 0, 0, 0);

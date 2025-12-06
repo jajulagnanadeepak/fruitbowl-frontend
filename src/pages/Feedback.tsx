@@ -59,7 +59,9 @@ const Feedback = () => {
       return;
     }
 
-    const feedbackDate = new Date(dateParam);
+    // Parse YYYY-MM-DD as local date to avoid UTC shift from Date(string)
+    const parts = dateParam.split("-").map((s) => Number(s));
+    const feedbackDate = new Date(parts[0], parts[1] - 1, parts[2]);
     const today = new Date();
 
     today.setHours(0, 0, 0, 0);
