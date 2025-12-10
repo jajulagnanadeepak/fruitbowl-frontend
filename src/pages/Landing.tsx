@@ -9,8 +9,14 @@ const Landing = () => {
 
   return (
     <div
-      className="min-h-screen flex items-center justify-center bg-cover bg-center"
-      style={{ backgroundImage: `url(${fruitsTheme})` }}
+      className="min-h-screen flex items-center justify-center bg-cover bg-center bg-no-repeat"
+      style={{
+        backgroundImage: `url(${fruitsTheme})`,
+        backgroundSize: "cover",
+        backgroundPosition: "center",
+        backgroundRepeat: "no-repeat",
+        /* avoid `backgroundAttachment: 'fixed'` on mobile; keep default for best compatibility */
+      }}
     >
       <div className="max-w-4xl w-full mx-auto px-6 py-16 text-center">
         <div className="flex flex-col items-center gap-8">

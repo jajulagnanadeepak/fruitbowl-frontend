@@ -7,12 +7,22 @@ export default {
   theme: {
     container: {
       center: true,
-      padding: "2rem",
+      // Reduced container padding for a more compact layout (≈ -25%)
+      padding: "1.25rem",
       screens: {
-        "2xl": "1400px",
+        // Slightly narrower max widths to scale layout down ~10-15%
+        sm: "600px",
+        md: "720px",
+        lg: "960px",
+        xl: "1150px",
+        "2xl": "1380px",
       },
     },
     extend: {
+      // Add Google Sans Flex font family for `font-google` utility
+      fontFamily: {
+        google: ["'Google Sans Flex'", "ui-sans-serif", "system-ui", "-apple-system", "Segoe UI", "Roboto", "Helvetica Neue", "Arial", "sans-serif"],
+      },
       colors: {
         border: "hsl(var(--border))",
         input: "hsl(var(--input))",

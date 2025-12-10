@@ -1,3 +1,4 @@
+@import "@fontsource/google-sans-flex";
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -61,6 +62,18 @@ All colors MUST be HSL.
     --sidebar-ring: 217.2 91.2% 59.8%;
   }
 
+  /* Make the entire site slightly smaller by reducing root font-size.
+     This scales rem-based Tailwind utilities (fonts, spacing) by ~90%.
+  */
+  html {
+    font-size: 90%; /* 90% ≈ 10% reduction */
+  }
+
+  /* Slightly reduce global radius for a tighter look */
+  :root {
+    --radius: 0.6rem;
+  }
+
   .dark {
     --background: 217 89% 8%;
     --foreground: 45 100% 96%;
@@ -114,5 +127,7 @@ All colors MUST be HSL.
 
   body {
     @apply bg-background text-foreground;
+    /* Apply Google Sans Flex globally via Tailwind utility */
+    @apply font-google;
   }
 }

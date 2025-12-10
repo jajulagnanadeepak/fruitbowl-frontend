@@ -20,7 +20,20 @@ const Navbar = () => {
         <div className="flex items-center justify-between h-20">
           <div className="flex items-center gap-2">
             {location.pathname !== "/" && location.pathname !== "/landing" && (
-              <Button variant="ghost" size="sm" onClick={() => navigate('/')} className="mr-2 -ml-4 hidden sm:inline-flex">
+              <Button
+                variant="ghost"
+                size="sm"
+                onClick={() => {
+  if (location.pathname === "/home") {
+    navigate("/", { replace: true });   // Always return to Landing
+  } else {
+    navigate(-1);
+  }
+}}
+
+                className="mr-3 p-2 flex items-center"
+                aria-label="Back"
+              >
                 <ArrowLeft className="h-5 w-5" />
               </Button>
             )}
