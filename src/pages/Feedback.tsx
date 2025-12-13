@@ -24,16 +24,15 @@ const isFeedbackDay = (date: Date): boolean => {
 };
 
 // ls functions
-const checkIfFeedbackSubmitted = (date: string): boolean => {
-  return JSON.parse(localStorage.getItem("sd_feedback_submitted_dates") || "[]").includes(date);
+const getFeedbackSubmissionCount = (date: string, user: string): number => {
+  const arr = JSON.parse(localStorage.getItem("sd_feedback_submitted") || "[]");
+  return arr.filter((item: any) => item.date === date && item.user === user).length;
 };
 
-const markFeedbackAsSubmitted = (date: string) => {
-  const arr = JSON.parse(localStorage.getItem("sd_feedback_submitted_dates") || "[]");
-  if (!arr.includes(date)) {
-    arr.push(date);
-    localStorage.setItem("sd_feedback_submitted_dates", JSON.stringify(arr));
-  }
+const markFeedbackAsSubmitted = (date: string, user: string) => {
+  const arr = JSON.parse(localStorage.getItem("sd_feedback_submitted") || "[]");
+  arr.push({ date, user });
+  localStorage.setItem("sd_feedback_submitted", JSON.stringify(arr));
 };
 
 const Feedback = () => {
@@ -50,6 +49,7 @@ const Feedback = () => {
   const [loading, setLoading] = useState(false);
   const [isSubmitted, setIsSubmitted] = useState(false);
   const [isValidDate, setIsValidDate] = useState(false);
+  const [submissionCount, setSubmissionCount] = useState(0);
 
   // Validate
   useEffect(() => {
@@ -57,6 +57,16 @@ const Feedback = () => {
       toast({ title: "Invalid Date", description: "No date provided." });
       setTimeout(() => navigate("/calendar"), 20);
       return;
+    }
+
+    // Load stored user data first
+    const stored = localStorage.getItem("sd_feedback_demo");
+    let userName = "";
+    if (stored) {
+      const obj = JSON.parse(stored);
+      userName = obj.name || "";
+      setFullName(userName);
+      setLocation(obj.location || "");
     }
 
     // Parse YYYY-MM-DD as local date to avoid UTC shift from Date(string)
@@ -87,21 +97,18 @@ const Feedback = () => {
       return;
     }
 
-    if (checkIfFeedbackSubmitted(dateParam)) {
+    // Check submission count for this user
+    const count = getFeedbackSubmissionCount(dateParam, userName);
+    setSubmissionCount(count);
+
+    if (count >= 2) {
       setIsSubmitted(true);
       toast({
-        title: "Already Submitted",
-        description: "Feedback for this date is already submitted.",
+        title: "Feedback Limit Reached",
+        description: "You have already submitted feedback twice for this date.",
       });
     } else {
       setIsValidDate(true);
-    }
-
-    const stored = localStorage.getItem("sd_feedback_demo");
-    if (stored) {
-      const obj = JSON.parse(stored);
-      setFullName(obj.name || "");
-      setLocation(obj.location || "");
     }
   }, [dateParam, navigate]);
 
@@ -132,7 +139,7 @@ const Feedback = () => {
       });
 
       if (res.ok) {
-        markFeedbackAsSubmitted(dateParam);
+        markFeedbackAsSubmitted(dateParam, fullName);
         setIsSubmitted(true);
         toast({ title: "Feedback sent", description: "Thank you!" });
       } else {
@@ -168,11 +175,10 @@ const Feedback = () => {
       <div className="min-h-screen bg-background flex items-center justify-center py-12">
         <div className="w-full max-w-2xl bg-card rounded-2xl p-8 shadow-lg text-center">
           <h2 className="text-2xl font-bold text-green-600">
-            Feedback Already Submitted
+            Feedback Limit Reached
           </h2>
           <p className="text-sm text-muted-foreground mt-2">
-            {`Feedback for ${format(new Date(dateParam || ""), "MMMM d, yyyy")}`}
-            {" has already been submitted."}
+            {`You have already submitted feedback twice for ${format(new Date(dateParam || ""), "MMMM d, yyyy")}.`}
           </p>
           <Button className="mt-4" onClick={() => navigate("/calendar")}>
             Back to Calendar
@@ -188,6 +194,11 @@ const Feedback = () => {
     <div className="min-h-screen bg-background flex items-center justify-center py-12">
       <div className="w-full max-w-2xl bg-card rounded-2xl p-8 shadow-lg">
         <h2 className="text-2xl font-bold">Send Feedback</h2>
+        {submissionCount === 1 && (
+          <p className="text-sm text-orange-600 font-medium mb-2">
+            This will be your second feedback submission for this date.
+          </p>
+        )}
         <p className="text-sm text-muted-foreground mb-4">
           {`Feedback for ${format(new Date(dateParam || ""), "MMMM d, yyyy")}`}
         </p>
