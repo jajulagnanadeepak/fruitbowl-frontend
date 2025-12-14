@@ -12,7 +12,7 @@ const Footer = () => {
               Fresh, healthy and handpicked fruits delivered to your door. Taste the difference with SD Fruits Bowl.
             </p>
             <div className="flex items-center gap-3 mt-3">
-              <a href="https://instagram.com/sample_profile" target="_blank" rel="noreferrer" className="text-muted-foreground hover:text-accent transition-colors"><Instagram className="h-5 w-5" /></a>
+              <a href="https://www.instagram.com/sd_fruits_bowl/?next=%2F" target="_blank" rel="noreferrer" className="text-muted-foreground hover:text-accent transition-colors"><Instagram className="h-5 w-5" /></a>
             </div>
           </div>
 
